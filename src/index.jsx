@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-import MySection from './MySection';
-import MyButton from './MyButton';
+import MyComponent from './MyComponent';
 
 ReactDOM.render(
-  <MySection>
-    <MyButton>My button text</MyButton>
-  </MySection>,
+  <MyComponent>
+    <MyComponent.First />
+    <MyComponent.Second />
+  </MyComponent>,
   document.getElementById('root'),
 );
 
