@@ -3,17 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-function MyComponent() {
-  return (
-    <section>
-      <h1>My component</h1>
-      <p>Content in My Component</p>
-    </section>
-  );
-}
+import MySection from './MySection';
+import MyButton from './MyButton';
 
 ReactDOM.render(
-  <MyComponent />,
+  <MySection>
+    <MyButton>My button text</MyButton>
+  </MySection>,
   document.getElementById('root'),
 );
 
