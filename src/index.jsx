@@ -4,16 +4,20 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <div>
-    <button type="button" />
-    <code />
-    <input />
-    <p />
-    <pre />
-    <select />
-    <table />
-    <ul />
-  </div>,
+  <section>
+    <header>
+      <h1>A Header</h1>
+    </header>
+    <nav>
+      <a href="item">Nav Item</a>
+    </nav>
+    <main>
+      <p>the main content...</p>
+    </main>
+    <footer>
+      <small>2019</small>
+    </footer>
+  </section>,
   document.getElementById('root'),
 );
 
