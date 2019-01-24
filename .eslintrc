@@ -5,6 +5,7 @@
     "document": true
   },
   "rules": {
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "react/no-multi-comp": "off"
   }
 }
