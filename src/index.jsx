@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-import MyComponent from './MyComponent';
+const enabled = false;
+const text = 'A button';
+const placeholder = 'input value...';
+const size = 50;
 
 ReactDOM.render(
-  <MyComponent>
-    <MyComponent.First />
-    <MyComponent.Second />
-  </MyComponent>,
+  <section>
+    <button disabled={!enabled}>{text}</button>
+    <input placeholder={placeholder} size={size} />
+  </section>,
   document.getElementById('root'),
 );
 
