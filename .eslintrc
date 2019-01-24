@@ -7,6 +7,7 @@
   "rules": {
     "react/jsx-one-expression-per-line": "off",
     "react/no-multi-comp": "off",
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "react/forbid-prop-types": "off"
   }
 }
