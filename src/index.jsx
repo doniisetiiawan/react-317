@@ -4,32 +4,27 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 import MyButton from './MyButton';
-import MyList from './MyList';
 
-const appState = {
-  text: 'My Button',
-  disabled: true,
-  items: ['First', 'Second', 'Third'],
-};
-
-function render(props) {
+function render({ first, second }) {
   ReactDOM.render(
     <main>
-      <MyButton text={props.text} disabled={props.disable} />
-      <MyList items={props.items} />
+      <MyButton text={first.text} disabled={first.disabled} />
+      <MyButton text={second.text} disabled={second.disabled} />
     </main>,
     document.getElementById('root'),
   );
 }
 
-render(appState);
-
-setTimeout(() => {
-  appState.disabled = false;
-  appState.items.push('Fourth');
-
-  render(appState);
-}, 1000);
+render({
+  first: {
+    text: 'First Button',
+    disabled: false,
+  },
+  second: {
+    text: 'Second Button',
+    disabled: true,
+  },
+});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
