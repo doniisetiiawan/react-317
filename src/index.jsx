@@ -3,14 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-import WithoutFragments from './WithoutFragments';
-import WithFragments from './WithFragments';
+import MyComponent from './MyComponent';
 
 ReactDOM.render(
-  <div>
-    <WithoutFragments />
-    <WithFragments />
-  </div>,
+  <MyComponent />,
   document.getElementById('root'),
 );
 
