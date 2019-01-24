@@ -3,28 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-const array = ['First', 'Second', 'Third'];
-
-const object = {
-  First: 1,
-  Second: 2,
-  Third: 3,
-};
+import WithoutFragments from './WithoutFragments';
+import WithFragments from './WithFragments';
 
 ReactDOM.render(
-  <section>
-    <h1>Array</h1>
-    <ul>{array.map(i => <li key={i}>{i}</li>)}</ul>
-    <h1>Object</h1>
-    <ul>
-      {Object.keys(object).map(i => (
-        <li key={i}>
-          <strong>{i}: </strong>
-          {object[i]}
-        </li>
-      ))}
-    </ul>
-  </section>,
+  <div>
+    <WithoutFragments />
+    <WithFragments />
+  </div>,
   document.getElementById('root'),
 );
 
