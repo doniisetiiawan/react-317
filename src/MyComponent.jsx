@@ -2,20 +2,26 @@ import React, { Component } from 'react';
 
 class MyComponent extends Component {
   state = {
-    first: false,
-    second: true,
+    heading: 'React awesomesauce {busy}',
+    content: 'loading...',
   };
 
   render() {
-    const { first, second } = this.state;
+    const { heading, content } = this.state;
+
+    setTimeout(() => {
+      this.setState({
+        heading: 'React Awesomesauce',
+        content: 'Done!',
+      });
+    }, 3000);
+
     return (
       <main>
-        <section>
-          <button type="button" disabled={first}>First...</button>
-        </section>
-        <section>
-          <button type="button" disabled={second}>Second...</button>
-        </section>
+        <h1>{heading}</h1>
+        <p>
+          {content}
+        </p>
       </main>
     );
   }
