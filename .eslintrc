@@ -6,6 +6,7 @@
   },
   "rules": {
     "react/jsx-one-expression-per-line": "off",
-    "react/no-multi-comp": "off"
+    "react/no-multi-comp": "off",
+    "react/no-unescaped-entities": "off"
   }
 }
