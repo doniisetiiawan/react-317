@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-import MyContainer from './MyContainer';
+import { PermissionProvider } from './PermissionContext';
+import App from './App';
 
 ReactDOM.render(
-  <MyContainer />,
+  <PermissionProvider>
+    <App />
+  </PermissionProvider>,
   document.getElementById('root'),
 );
 
