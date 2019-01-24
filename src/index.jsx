@@ -3,21 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
+function MyComponent() {
+  return (
+    <section>
+      <h1>My component</h1>
+      <p>Content in My Component</p>
+    </section>
+  );
+}
+
 ReactDOM.render(
-  <section>
-    <header>
-      <h1>A Header</h1>
-    </header>
-    <nav>
-      <a href="item">Nav Item</a>
-    </nav>
-    <main>
-      <p>the main content...</p>
-    </main>
-    <footer>
-      <small>2019</small>
-    </footer>
-  </section>,
+  <MyComponent />,
   document.getElementById('root'),
 );
 
