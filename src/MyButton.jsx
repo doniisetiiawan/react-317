@@ -2,17 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function MyButton(props) {
-  const { children } = props;
-
-  return <button type="button">{children}</button>;
+  const { disabled, text } = props;
+  return (
+    <button type="button" disabled={disabled}>{text}</button>
+  );
 }
 
 MyButton.propTypes = {
-  children: PropTypes.node,
+  disabled: PropTypes.bool,
+  text: PropTypes.string,
 };
 
 MyButton.defaultProps = {
-  children: null,
+  disabled: false,
+  text: 'My Button',
 };
 
 export default MyButton;
