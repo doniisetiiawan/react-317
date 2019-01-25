@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-import MyInput from './MyInput';
+import MyList from './MyList';
 
 ReactDOM.render(
-  <MyInput />,
+  <MyList />,
   document.getElementById('root'),
 );
 
