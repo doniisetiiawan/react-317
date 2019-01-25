@@ -5,8 +5,14 @@ import * as serviceWorker from './serviceWorker';
 
 import MyList from './MyList';
 
+const items = [
+  { id: 0, name: 'First' },
+  { id: 1, name: 'Second' },
+  { id: 2, name: 'Third' },
+];
+
 ReactDOM.render(
-  <MyList />,
+  <MyList items={items} />,
   document.getElementById('root'),
 );
 

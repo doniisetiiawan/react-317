@@ -1,24 +1,31 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from 'react';
-
-import reverse from './reverse';
+import PropTypes from 'prop-types';
 
 class MyList extends Component {
-  state = {
-    items: ['angular', 'ember', 'react'],
+  static defaultProps = {
+    items: [],
   };
 
-  onReverseClick = reverse.bind(this);
+  static propTypes = {
+    items: PropTypes.array,
+  };
+
+  onClick = (id) => {
+    const { items } = this.props;
+    const { name } = items.find(i => i.id === id);
+    console.log('clicked', `"${name}"`);
+  };
 
   render() {
-    const { state: { items }, onReverseClick } = this;
-
+    const { items } = this.props;
     return (
-      <section>
-        <button type="button" onClick={onReverseClick}>Reverse</button>
-        <ul>
-          {items.map((v, i) => <li key={i}>{v}</li>)}
-        </ul>
-      </section>
+      <ul>
+        {items.map(({ id, name }) => (
+          <li key={id} onClick={() => this.onClick(id)} role="list">{name}</li>
+        ))}
+      </ul>
     );
   }
 }
