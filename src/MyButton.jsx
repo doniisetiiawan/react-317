@@ -10,14 +10,10 @@ class MyButton extends Component {
     children: PropTypes.node,
   };
 
-  static onClick() {
-    console.log('clicked');
-  }
-
   render() {
     const { children } = this.props;
     return (
-      <button onClick={MyButton.onClick}>{children}</button>
+      <button onClick={() => console.log('clicked')}>{children}</button>
     );
   }
 }
