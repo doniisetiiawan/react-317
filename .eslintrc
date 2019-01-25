@@ -9,6 +9,7 @@
     "react/no-multi-comp": "off",
     "react/no-unescaped-entities": "off",
     "react/forbid-prop-types": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "react/no-array-index-key": "off"
   }
 }
