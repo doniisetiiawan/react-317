@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const MyButton = ({ disabled, text }) => (
-  <button type="button" disabled={disabled}>{text}</button>
-);
+class MyButton extends Component {
+  static defaultProps = {
+    children: null,
+  };
 
-MyButton.defaultProps = {
-  disabled: false,
-  text: 'My Button',
-};
+  static propTypes = {
+    children: PropTypes.node,
+  };
 
-MyButton.propTypes = {
-  disabled: PropTypes.bool,
-  text: PropTypes.string,
-};
+  static onClick() {
+    console.log('clicked');
+  }
+
+  render() {
+    const { children } = this.props;
+    return (
+      <button onClick={MyButton.onClick}>{children}</button>
+    );
+  }
+}
 
 export default MyButton;

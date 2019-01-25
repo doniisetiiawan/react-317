@@ -3,13 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-import { PermissionProvider } from './PermissionContext';
-import App from './App';
+import MyButton from './MyButton';
 
 ReactDOM.render(
-  <PermissionProvider>
-    <App />
-  </PermissionProvider>,
+  <MyButton>Click Me!</MyButton>,
   document.getElementById('root'),
 );
 
