@@ -3,16 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-import MyList from './MyList';
-
-const items = [
-  { id: 0, name: 'First' },
-  { id: 1, name: 'Second' },
-  { id: 2, name: 'Third' },
-];
+import App from './App';
 
 ReactDOM.render(
-  <MyList items={items} />,
+  <App />,
   document.getElementById('root'),
 );
 

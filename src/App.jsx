@@ -1,17 +1,30 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 
-import First from './First';
-import Second from './Second';
-import Third from './Third';
+class App extends Component {
+  state = {
+    first: 0,
+    second: 0,
+    third: 0,
+  };
 
-function App() {
-  return (
-    <Fragment>
-      <First />
-      <Second />
-      <Third />
-    </Fragment>
-  );
+  onClick = name => () => {
+    this.setState(state => ({
+      ...state,
+      [name]: state[name] + 1,
+    }));
+  };
+
+  render() {
+    const { first, second, third } = this.state;
+
+    return (
+      <Fragment>
+        <button type="button" onClick={this.onClick('first')}>First {first}</button>
+        <button type="button" onClick={this.onClick('second')}>Second {second}</button>
+        <button type="button" onClick={this.onClick('third')}>Third {third}</button>
+      </Fragment>
+    );
+  }
 }
 
 export default App;
