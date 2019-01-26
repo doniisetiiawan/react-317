@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ArticleItem from './ArticleItem';
 
 function createLog(log) {
   return () => console.warn(`${log}is not defined`);
@@ -10,23 +11,13 @@ function ArticleList(props) {
   const { articles, onClickToggle, onClickRemove } = props;
   return (
     <ul>
-      {articles.map(i => (
-        <li key={i.id}>
-          <a
-            href={`#${i.id}`}
-            title="Toggle Summary"
-            onClick={() => onClickToggle(i.id)}
-          >{i.title}
-          </a>
-          &nbsp;
-          <a
-            href={`#${i.id}`}
-            title="Remove"
-            onClick={() => onClickRemove(i.id)}
-          >&#10007;
-          </a>
-          <p style={{ display: i.display }}>{i.summary}</p>
-        </li>
+      {articles.map(article => (
+        <ArticleItem
+          key={article.id}
+          article={article}
+          onClickToggle={onClickToggle}
+          onClickRemove={onClickRemove}
+        />
       ))}
     </ul>
   );
@@ -40,7 +31,7 @@ ArticleList.propTypes = {
 
 ArticleList.defaultProps = {
   articles: [],
-  onClickRemove: createLog('createLog'),
+  onClickRemove: createLog('onClickRemove'),
   onClickToggle: createLog('onClickToggle'),
 };
 
