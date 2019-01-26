@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-import MyButton from './MyButton';
+import MyFeature from './MyFeature';
 
 ReactDOM.render(
-  <MyButton>Click me</MyButton>,
+  <MyFeature />,
   document.getElementById('root'),
 );
 
