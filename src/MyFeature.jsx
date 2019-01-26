@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { fromJS } from 'immutable';
 import cuid from 'cuid';
 
+import ArticleList from './ArticleList';
+
 class MyFeature extends Component {
   state = {
     data: fromJS({
@@ -102,28 +104,12 @@ class MyFeature extends Component {
           />
           <button type="button" onClick={this.onClickAdd}>Add</button>
         </header>
-        <article>
-          <ul>
-            {articles.map(i => (
-              <li key={i.id}>
-                <a
-                  href={`#${i.id}`}
-                  title="Toggle Summary"
-                  onClick={() => this.onClickToggle(i.id)}
-                >{i.title}
-                </a>
-                &nbsp;
-                <a
-                  href={`#${i.id}`}
-                  title="Remove"
-                  onClick={() => this.onClickRemove(i.id)}
-                >&#10007;
-                </a>
-                <p style={{ display: i.display }}>{i.summary}</p>
-              </li>
-            ))}
-          </ul>
-        </article>
+
+        <ArticleList
+          articles={articles}
+          onClickToggle={this.onClickToggle}
+          onClickRemove={this.onClickRemove}
+        />
       </section>
     );
   }
