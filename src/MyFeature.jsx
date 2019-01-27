@@ -3,6 +3,7 @@ import { fromJS } from 'immutable';
 import cuid from 'cuid';
 
 import ArticleList from './ArticleList';
+import AddArticle from './AddArticle';
 
 class MyFeature extends Component {
   state = {
@@ -90,20 +91,14 @@ class MyFeature extends Component {
 
     return (
       <section>
-        <header>
-          <h1>Articles</h1>
-          <input
-            placeholder="Title"
-            value={title}
-            onChange={this.onChangeTitle}
-          />
-          <input
-            placeholder="Summary"
-            value={summary}
-            onChange={this.onChangeSummary}
-          />
-          <button type="button" onClick={this.onClickAdd}>Add</button>
-        </header>
+        <AddArticle
+          name="Articles"
+          title={title}
+          summary={summary}
+          onChangeTitle={this.onChangeTitle}
+          onChangeSummary={this.onChangeSummary}
+          onClickAdd={this.onClickAdd}
+        />
 
         <ArticleList
           articles={articles}
