@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { fromJS } from 'immutable';
 import cuid from 'cuid';
 
-import ArticleList from './ArticleList';
-import AddArticle from './AddArticle';
+function createLog(log) {
+  return () => console.warn(`${log} is not defined`);
+}
 
 class MyFeature extends Component {
+  static defaultProps = {
+    addArticle: createLog('onChangeSummary'),
+    articleList: createLog('onChangeSummary'),
+  };
+
+  static propTypes = {
+    addArticle: PropTypes.func,
+    articleList: PropTypes.func,
+  };
+
   state = {
     data: fromJS({
       articles: [
@@ -87,24 +99,30 @@ class MyFeature extends Component {
   };
 
   render() {
-    const { articles, title, summary } = this.data.toJS();
+    const {
+      articles,
+      title,
+      summary,
+    } = this.data.toJS();
+    const {
+      props: { addArticle, articleList },
+      onClickAdd,
+      onClickToggle,
+      onClickRemove,
+      onChangeTitle,
+      onChangeSummary,
+    } = this;
 
     return (
       <section>
-        <AddArticle
-          name="Articles"
-          title={title}
-          summary={summary}
-          onChangeTitle={this.onChangeTitle}
-          onChangeSummary={this.onChangeSummary}
-          onClickAdd={this.onClickAdd}
-        />
-
-        <ArticleList
-          articles={articles}
-          onClickToggle={this.onClickToggle}
-          onClickRemove={this.onClickRemove}
-        />
+        {addArticle({
+          title,
+          summary,
+          onChangeTitle,
+          onChangeSummary,
+          onClickAdd,
+        })}
+        {articleList({ articles, onClickToggle, onClickRemove })}
       </section>
     );
   }
