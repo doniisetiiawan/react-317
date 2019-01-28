@@ -2,20 +2,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import MyList from './MyList';
+import MyUser from './MyUser';
 
-function render() {
-  const myList = ReactDOM.render(
-    <MyList />,
-    document.getElementById('root'),
-  );
+const myUser = ReactDOM.render(
+  <MyUser />,
+  document.getElementById('root'),
+);
 
-  myList.data = myList.data.setIn([
-    'items',
-    0,
-  ], 0);
-}
+myUser.setState({
+  modified: new Date(),
+  first: 'first1',
+  last: 'last1',
+});
 
-for (let i = 0; i < 100; i += 1) {
-  render();
-}
+myUser.setState({
+  first: 'First2',
+  last: 'Last2',
+});
