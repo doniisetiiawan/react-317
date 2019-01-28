@@ -1,9 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import UserListContainer from './UserListContainer';
+import MyFeature from './MyFeature';
 
-ReactDOM.render(
-  <UserListContainer loading="playinh with the waiting game..." />,
-  document.getElementById('root'),
-);
+let disabled = true;
+
+function render() {
+  disabled = !disabled;
+
+  ReactDOM.render(
+    <MyFeature {...{ disabled }} />,
+    document.getElementById('root'),
+  );
+}
+
+setInterval(render, 3000);
+
+render();
