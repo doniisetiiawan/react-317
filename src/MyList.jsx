@@ -1,30 +1,31 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { fromJS } from 'immutable';
 
 class MyList extends Component {
-  static defaultProps = {
-    items: [],
+  state = {
+    data: fromJS({
+      items: new Array(5000).fill(null).map((v, i) => i),
+    }),
   };
 
-  static propTypes = {
-    items: PropTypes.array,
-  };
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.data !== nextState.data;
+  }
 
-  onClick = (id) => {
-    const { items } = this.props;
-    const { name } = items.find(i => i.id === id);
-    console.log('clicked', `"${name}"`);
-  };
+  get data() {
+    const { data } = this.state;
+    return data;
+  }
+
+  set data(data) {
+    this.setState({ data });
+  }
 
   render() {
-    const { items } = this.props;
+    const items = this.data.get('items');
     return (
       <ul>
-        {items.map(({ id, name }) => (
-          <li key={id} onClick={() => this.onClick(id)} role="list">{name}</li>
-        ))}
+        {items.map(i => <li key={i}>{i}</li>)}
       </ul>
     );
   }
