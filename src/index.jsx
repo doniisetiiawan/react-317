@@ -18,7 +18,7 @@ const invalidProps = {
   myBool: () => 'My Reaturn Value',
   myFunc: true,
   myArray: { myProp: 'My Prop' },
-  myObject: ['One', 'Two', 'Three']
+  myObject: ['One', 'Two', 'Three'],
 };
 
 function render(props) {
@@ -29,4 +29,4 @@ function render(props) {
 }
 
 render(validProps);
-render(invalidProps);
+// render(invalidProps);

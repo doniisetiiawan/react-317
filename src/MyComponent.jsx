@@ -28,21 +28,12 @@ const MyComponent = ({
 );
 
 MyComponent.propTypes = {
-  myArray: PropTypes.array,
-  myBool: PropTypes.bool,
-  myFunc: PropTypes.func,
-  myNumber: PropTypes.number,
-  myObject: PropTypes.object,
-  myString: PropTypes.string,
-};
-
-MyComponent.defaultProps = {
-  myArray: ['One'],
-  myBool: false,
-  myFunc: () => 'func',
-  myNumber: 10,
-  myObject: { myProp: 'Prop' },
-  myString: 'string',
+  myArray: PropTypes.array.isRequired,
+  myBool: PropTypes.bool.isRequired,
+  myFunc: PropTypes.func.isRequired,
+  myNumber: PropTypes.number.isRequired,
+  myObject: PropTypes.object.isRequired,
+  myString: PropTypes.string.isRequired,
 };
 
 export default MyComponent;
