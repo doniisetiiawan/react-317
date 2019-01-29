@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import { fromJS } from 'immutable';
-import ReactDOM from 'react-dom';
 
 import { users } from './api';
 import UserList from './UserList';
-
-const onClickCancel = (e) => {
-  e.preventDefault();
-
-  ReactDOM.render(<p>Cancelled</p>, document.getElementById('root'));
-};
 
 class UserListContainer extends Component {
   state = {
@@ -21,9 +14,7 @@ class UserListContainer extends Component {
   };
 
   componentDidMount() {
-    this.job = users();
-
-    this.job.then(
+    users().then(
       (result) => {
         this.data = this.data
           .set('loading', null)
@@ -31,17 +22,11 @@ class UserListContainer extends Component {
           .set('users', fromJS(result.users));
       },
       (error) => {
-        if (!error.cancelled) {
-          this.data = this.data
-            .set('loading', null)
-            .set('error', error);
-        }
+        this.data = this.data
+          .set('loading', null)
+          .set('error', error);
       },
     );
-  }
-
-  componentWillUnmount() {
-    this.job.cancel();
   }
 
   get data() {
@@ -54,8 +39,12 @@ class UserListContainer extends Component {
   }
 
   render() {
+    if (this.data.get('error') !== null) {
+      throw new Error(this.data.get('error'));
+    }
+
     return (
-      <UserList onClickCancel={onClickCancel} {...this.data.toJS()} />
+      <UserList {...this.data.toJS()} />
     );
   }
 }
