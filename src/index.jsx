@@ -2,21 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import MyComponent from './MyComponent';
+import MyUser from './MyUser';
 
-const myHeader = <h1>My Header</h1>;
-const myContent = <p>My Content</p>;
+const users = [
+  new MyUser('First1', 'Last1'),
+  new MyUser('First2', 'Last2'),
+  new MyUser('First3', 'Last3'),
+];
 
 ReactDOM.render(
   <section>
-    <MyComponent {...{ myHeader, myContent }} />
-
-    <MyComponent myHeader="My Header" {...{ myContent }} />
-
-    <MyComponent {...{ myHeader }} myContent="My Content" />
+    <MyComponent myDate={new Date()} myCount={0} myUsers={users} />
 
     <MyComponent
-      {...{ myHeader }}
-      myContent={[myContent, myContent, myContent]}
+      myDate="6/9/2016"
+      myCount={false}
+      myUsers={[1, 2, 3]}
     />
   </section>,
   document.getElementById('root'),
