@@ -3,30 +3,17 @@ import ReactDOM from 'react-dom';
 
 import MyComponent from './MyComponent';
 
-const validProps = {
-  myString: 'My String',
-  myNumber: 100,
-  myBool: true,
-  myFunc: () => 'My return value',
-  myArray: ['One', 'Two', 'Three'],
-  myObject: { myProp: 'My Prop' },
-};
+ReactDOM.render(
+  <section>
+    <MyComponent label="Regular values" max={20} value={10} />
 
-const invalidProps = {
-  myString: 100,
-  myNumber: 'My String',
-  myBool: () => 'My Reaturn Value',
-  myFunc: true,
-  myArray: { myProp: 'My Prop' },
-  myObject: ['One', 'Two', 'Three'],
-};
+    <MyComponent label="String Values" max="20" value="10" />
 
-function render(props) {
-  ReactDOM.render(
-    <MyComponent {...props} />,
-    document.getElementById('root'),
-  );
-}
-
-render(validProps);
-// render(invalidProps);
+    <MyComponent
+      label={Number.MAX_SAFE_INTEGER}
+      max={new Date()}
+      value={10}
+    />
+  </section>,
+  document.getElementById('root'),
+);
