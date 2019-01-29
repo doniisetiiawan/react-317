@@ -1,46 +1,48 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class MyComponent extends Component {
-  state = {
-    first: 'loading...',
-    second: 'loading...',
-    third: 'loading...',
-    fourth: 'loading...',
-    doneMessage: 'finished',
-  };
+const MyComponent = ({
+  myString,
+  myNumber,
+  myBool,
+  myFunc,
+  myArray,
+  myObject,
+}) => (
+  <section>
+    <p>{myString}</p>
+    <p>{myNumber}</p>
 
-  render() {
-    const { state } = this;
+    <p>
+      <input type="checkbox" defaultChecked={myBool} />
+    </p>
 
-    setTimeout(() => {
-      this.setState({ first: 'done!' });
-    }, 1000);
-    setTimeout(() => {
-      this.setState({ second: 'done!' });
-    }, 2000);
-    setTimeout(() => {
-      this.setState({ third: 'done!' });
-    }, 3000);
-    setTimeout(() => {
-      this.setState(() => ({
-        ...state,
-        fourth: state.doneMessage,
-      }));
-    }, 4000);
+    <p>{myFunc()}</p>
 
-    return (
-      <ul>
-        {Object.keys(state)
-          .filter(key => key !== 'doneMessage')
-          .map(key => (
-            <li key={key}>
-              <strong>{key}: </strong>
-              {state[key]}
-            </li>
-          ))}
-      </ul>
-    );
-  }
-}
+    <ul>
+      {myArray.map(i => <li key={i}>{i}</li>)}
+    </ul>
+
+    <p>{myObject.myProp}</p>
+  </section>
+);
+
+MyComponent.propTypes = {
+  myArray: PropTypes.array,
+  myBool: PropTypes.bool,
+  myFunc: PropTypes.func,
+  myNumber: PropTypes.number,
+  myObject: PropTypes.object,
+  myString: PropTypes.string,
+};
+
+MyComponent.defaultProps = {
+  myArray: ['One'],
+  myBool: false,
+  myFunc: () => 'func',
+  myNumber: 10,
+  myObject: { myProp: 'Prop' },
+  myString: 'string',
+};
 
 export default MyComponent;
