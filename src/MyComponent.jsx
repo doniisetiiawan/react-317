@@ -1,22 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MyUser from './MyUser';
+const levels = new Array(10).fill(null).map((v, i) => i + 1);
 
-const MyComponent = ({ myDate, myCount, myUsers }) => (
+const userShape = {
+  name: PropTypes.string,
+  age: PropTypes.number,
+};
+
+const MyComponent = ({ level, user }) => (
   <section>
-    <p>{myDate.toLocaleString()}</p>
-    <p>{myCount}</p>
-    <ul>
-      {myUsers.map(i => <li key={i.id}>{i.name}</li>)}
-    </ul>
+    <p>{level}</p>
+    <p>{user.name}</p>
+    <p>{user.age}</p>
   </section>
 );
 
 MyComponent.propTypes = {
-  myCount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  myDate: PropTypes.instanceOf(Date).isRequired,
-  myUsers: PropTypes.arrayOf(PropTypes.instanceOf(MyUser)).isRequired,
+  level: PropTypes.oneOf(levels).isRequired,
+  user: PropTypes.shape(userShape).isRequired,
 };
 
 export default MyComponent;
