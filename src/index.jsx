@@ -5,12 +5,7 @@ import MyComponent from './MyComponent';
 
 ReactDOM.render(
   <section>
-    <MyComponent
-      myArray={['first', 'second', 'third']}
-      myNumber={99}
-    />
-
-    <MyComponent myArray={[]} myNumber={100} />
+    <MyComponent />
   </section>,
   document.getElementById('root'),
 );
