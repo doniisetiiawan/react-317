@@ -1,30 +1,15 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
-class App extends Component {
-  state = {
-    first: 0,
-    second: 0,
-    third: 0,
-  };
+import One from './one';
+import Two from './two';
 
-  onClick = name => () => {
-    this.setState(state => ({
-      ...state,
-      [name]: state[name] + 1,
-    }));
-  };
-
-  render() {
-    const { first, second, third } = this.state;
-
-    return (
-      <Fragment>
-        <button type="button" onClick={this.onClick('first')}>First {first}</button>
-        <button type="button" onClick={this.onClick('second')}>Second {second}</button>
-        <button type="button" onClick={this.onClick('third')}>Third {third}</button>
-      </Fragment>
-    );
-  }
-}
-
-export default App;
+export default () => (
+  <BrowserRouter>
+    <Fragment>
+      <Route exact path="/" render={() => <Redirect to="one" />} />
+      <One />
+      <Two />
+    </Fragment>
+  </BrowserRouter>
+);
