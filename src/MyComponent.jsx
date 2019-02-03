@@ -2,7 +2,7 @@ import React from 'react';
 
 function MyComponent() {
   return (
-    <p>My component ...</p>
+    <p>Hello route</p>
   );
 }
 
