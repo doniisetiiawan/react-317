@@ -1,23 +1,17 @@
+/* eslint-disable react/no-unused-prop-types,react/require-default-props,react/default-props-match-prop-types,react/prefer-stateless-function */
 import { Component } from 'react';
-import { fromJS } from 'immutable';
+import PropTypes from 'prop-types';
 
 class BaseComponent extends Component {
-  state = {
-    data: fromJS({
-      name: 'Mark',
-      enabled: false,
-      placeholder: '',
-    }),
+  static defaultProps = {
+    groups: [],
+    users: [],
   };
 
-  get data() {
-    const { data } = this.state;
-    return data;
-  }
-
-  set data(data) {
-    this.setState({ data });
-  }
+  static propTypes = {
+    groups: PropTypes.array.isRequired,
+    users: PropTypes.array.isRequired,
+  };
 
   render() {
     return null;

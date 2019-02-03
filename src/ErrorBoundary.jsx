@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class ErrorBoundary extends Component {
@@ -21,10 +21,12 @@ class ErrorBoundary extends Component {
   render() {
     const { error } = this.state;
     const { children } = this.props;
+
     if (error === null) {
       return children;
     }
-    return <strong>{error.toString()}</strong>;
+    console.error(error);
+    return null;
   }
 }
 
