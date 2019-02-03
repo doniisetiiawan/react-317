@@ -1,20 +1,49 @@
-/* eslint-disable react/no-unused-prop-types,react/require-default-props,react/default-props-match-prop-types,react/prefer-stateless-function */
-import { Component } from 'react';
-import PropTypes from 'prop-types';
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions,jsx-a11y/click-events-have-key-events */
+import React, { Component } from 'react';
+import { fromJS } from 'immutable';
 
 class BaseComponent extends Component {
-  static defaultProps = {
-    groups: [],
-    users: [],
+  state = {
+    data: fromJS({
+      items: [],
+    }),
   };
 
-  static propTypes = {
-    groups: PropTypes.array.isRequired,
-    users: PropTypes.array.isRequired,
+  get data() {
+    const { data } = this.state;
+    return data;
+  }
+
+  set data(data) {
+    this.setState({ data });
+  }
+
+  onClick = id => () => {
+    this.data = this.data.update('items', items => items.update(
+      items.indexOf(items.find(i => i.get('id') === id)),
+      item => item.update('done', d => !d),
+    ));
   };
 
   render() {
-    return null;
+    const { items } = this.data.toJS();
+
+    return (
+      <ul>
+        {items.map(i => (
+          <li
+            key={i.id}
+            onClick={() => this.onClick(i.id)}
+            style={{
+              cursor: 'pointer',
+              textDecoration: i.done ? 'line-through' : 'none',
+            }}
+          >
+            {i.name}
+          </li>
+        ))}
+      </ul>
+    );
   }
 }
 
