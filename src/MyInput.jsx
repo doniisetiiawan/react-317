@@ -1,19 +1,24 @@
-import React, { Component } from 'react';
+/* eslint-disable jsx-a11y/no-autofocus */
+import React from 'react';
+import PropTypes from 'prop-types';
+import { getState, setState } from './store';
 
-class MyInput extends Component {
-  static onChange() {
-    console.log('changed');
-  }
-
-  static onBlur() {
-    console.log('blurred');
-  }
-
-  render() {
-    return (
-      <input onChange={MyInput.onChange} onBlur={MyInput.onBlur} />
-    );
-  }
+function onChanges(e) {
+  setState(getState().set('filterValue', e.target.value));
 }
+
+const MyInput = ({ value, placeholder }) => (
+  <input
+    autoFocus
+    value={value}
+    placeholder={placeholder}
+    onChange={onChanges}
+  />
+);
+
+MyInput.propTypes = {
+  placeholder: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+};
 
 export default MyInput;
