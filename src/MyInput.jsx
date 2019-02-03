@@ -16,9 +16,13 @@ const MyInput = ({ value, placeholder }) => (
   />
 );
 
+MyInput.defaultProps = {
+  value: '',
+};
+
 MyInput.propTypes = {
   placeholder: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
 };
 
 export default MyInput;
