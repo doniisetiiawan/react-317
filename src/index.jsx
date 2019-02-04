@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-import App from './App';
+import UsersContainer from './UsersContainer';
 
 ReactDOM.render(
-  <App />,
+  <BrowserRouter>
+    <Route path="/users/:desc?" component={UsersContainer} />
+  </BrowserRouter>,
   document.getElementById('root'),
 );
