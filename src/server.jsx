@@ -1,19 +1,19 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import fs from 'fs-extra';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 
 import App from './App';
 
 const app = express();
+const doc = fs.readFileSync('./build/index.html');
+
+app.use(express.static('./build', { index: false }));
 
 app.get('/*', (req, res) => {
   const context = {};
-  const html = ReactDOMServer.renderToString(
-    <StaticRouter location={req.url} context={context}>
-      <App />
-    </StaticRouter>,
-  );
+  const html = ReactDOMServer.renderToString(<App />);
 
   if (context.url) {
     res.writeHead(301, {
@@ -21,10 +21,11 @@ app.get('/*', (req, res) => {
     });
     res.end();
   } else {
-    res.write(`
-      <!doctype html>
-      <div id="app">${html}</div>
-    `);
+    res.write(
+      doc
+        .toString()
+        .replace('<div id="root">', `<div id="root">${html}`),
+    );
     res.end();
   }
 });
