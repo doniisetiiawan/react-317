@@ -1,14 +1,9 @@
 import React from 'react';
-import { PermissionConsumer } from './PermissionContext';
 
-function First() {
+function Second() {
   return (
-    <PermissionConsumer name="second">
-      <div>
-        <button type="button">second</button>
-      </div>
-    </PermissionConsumer>
+    <h1>Second</h1>
   );
 }
 
-export default First;
+export default Second;

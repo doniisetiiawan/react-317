@@ -1,14 +1,26 @@
-import React, { Fragment } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
-import UsersContainer from './UsersContainer';
-import UserContainer from './UserContainer';
+import First from './First';
+import Second from './Second';
 
-export default () => (
+const App = () => (
   <BrowserRouter>
-    <Fragment>
-      <Route exact path="/" component={UsersContainer} />
-      <Route exact path="/users/:id" component={UserContainer} />
-    </Fragment>
+    <section>
+      <nav>
+        <p>
+          <Link to="first">First</Link>
+        </p>
+        <p>
+          <Link to="second">Second</Link>
+        </p>
+      </nav>
+      <section>
+        <Route path="/first" component={First} />
+        <Route path="/second" component={Second} />
+      </section>
+    </section>
   </BrowserRouter>
 );
+
+export default App;
