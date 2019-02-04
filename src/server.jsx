@@ -1,31 +1,32 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 
 import App from './App';
 
-const doc = content => `
-<!doctype html>
-<html lang="en">
-<head>
-  <title>Rendering to strings</title>
-</head>
-<body>
-<div id="app">${content}</div>
-</body>
-</html>
-  `;
-
 const app = express();
 
-app.get('/', (req, res) => {
-  const props = {
-    items: ['One', 'Two', 'Three'],
-  };
+app.get('/*', (req, res) => {
+  const context = {};
+  const html = ReactDOMServer.renderToString(
+    <StaticRouter location={req.url} context={context}>
+      <App />
+    </StaticRouter>,
+  );
 
-  const rendered = ReactDOMServer.renderToString(<App {...props} />);
-
-  res.send(doc(rendered));
+  if (context.url) {
+    res.writeHead(301, {
+      Location: context.url,
+    });
+    res.end();
+  } else {
+    res.write(`
+      <!doctype html>
+      <div id="app">${html}</div>
+    `);
+    res.end();
+  }
 });
 
 app.listen(8080, () => {
